@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Echo Test') {
             steps {
-                echo 'test'
+                bat 'xelatex'
             }
         }
     }
