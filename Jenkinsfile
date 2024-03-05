@@ -1,14 +1,10 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { 
-        docker {
-            image 'henriqueholtz/node-win:16.15.1'
-        }
-    }
+    agent any
+    
     stages {
-        stage('build') {
+        stage('Echo Test') {
             steps {
-                bat 'node --version'
+                echo 'test'
             }
         }
     }
