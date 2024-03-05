@@ -19,11 +19,11 @@ pipeline{
             steps{
                 script {
                     try {
-                        sh "docker stop ${CONTAINER_NAME}"
+                        bat "docker stop ${CONTAINER_NAME}"
                         sleep 1
-                        sh "docker rm ${CONTAINER_NAME}"
+                        bat "docker rm ${CONTAINER_NAME}"
                     } catch (e) {
-                        sh 'exit 0'
+                        bat 'exit 0'
                     }
                 }
             }
@@ -31,14 +31,14 @@ pipeline{
 
         stage('Build') {
             steps {
-                sh "docker build -t ${NAME} ."
+                bat "docker build -t ${NAME} ."
             }
         }
 
         stage('Deploy'){
             steps {
-                sh "docker tag ${NAME}:latest ${NAME}:${VERSION}"
-                sh "docker run -d --name=${CONTAINER_NAME} -p 8000:8000 ${NAME}:latest"
+                bat "docker tag ${NAME}:latest ${NAME}:${VERSION}"
+                bat "docker run -d --name=${CONTAINER_NAME} -p 8000:8000 ${NAME}:latest"
             }
         }
     }
