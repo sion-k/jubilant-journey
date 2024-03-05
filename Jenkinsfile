@@ -2,13 +2,13 @@
 pipeline {
     agent { 
         docker {
-            image 'python:latest'
+            image 'henriqueholtz/node-win:16.15.1'
         }
     }
     stages {
         stage('build') {
             steps {
-                bat 'python --version'
+                bat 'node --version'
             }
         }
     }
