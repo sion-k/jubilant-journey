@@ -1,6 +1,6 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any
+    agent { docker { image 'node:20.11.1-alpine3.19' } }
     stages {
         stage('docker pipeline test') {
             steps {
