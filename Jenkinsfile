@@ -25,5 +25,13 @@ pipeline {
                 sh 'npm run build'
             }
         }
+
+        stage('Image build') {
+            steps {
+                script {
+                    docker.build("nest")
+                }
+            }
+        }
     }
 }
