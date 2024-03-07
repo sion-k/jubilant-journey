@@ -24,6 +24,9 @@ pipeline {
             steps {
                 script {
                     docker.build("nest")
+                    docker.image("nest").stop()
+                    docker.image("nest").remove()
+                    docker.run("nest")
                 }
             }
         }
