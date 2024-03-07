@@ -29,6 +29,7 @@ pipeline {
         stage('Image build') {
             agent none
             steps {
+                sh 'whoami'
                 script {
                     docker.build("nest")
                 }
