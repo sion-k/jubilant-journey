@@ -23,8 +23,13 @@ pipeline {
         stage('Image build') {
             steps {
                 sh 'docker build -t nest .'
-                sh 'docker stop nest'
-                sh 'docker rm nest'
+                script {
+                    def existingContainer = sh(script: 'docker ps -q -f name=nest', returnStdout: true).trim()
+                    if (existingContainer) {
+                        sh 'docker stop nest'
+                        sh 'docker rm nest'
+                    }
+                }
                 sh 'docker run -d -p 3000:3000 --name nest nest'
             }
         }
