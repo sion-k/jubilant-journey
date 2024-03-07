@@ -22,12 +22,10 @@ pipeline {
 
         stage('Image build') {
             steps {
-                script {
-                    docker.build("nest")
-                    docker.image("nest").stop()
-                    docker.image("nest").remove()
-                    docker.run("nest")
-                }
+                sh 'docker build -t nest .'
+                sh 'docker stop nest'
+                sh 'docker rm nest'
+                sh 'docker run -d -p 3000:3000 --name nest nest'
             }
         }
     }
