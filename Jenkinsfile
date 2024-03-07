@@ -27,7 +27,7 @@ pipeline {
         }
 
         stage('Image build') {
-            agent any
+            agent none
             steps {
                 script {
                     docker.build("nest")
